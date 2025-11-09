@@ -1,0 +1,213 @@
+/* Professional Damped Oscillator App Styles */
+
+/* Header Styling */
+.header-container {
+    background: linear-gradient(135deg, #00A8E8 0%, #0077BE 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 168, 232, 0.3);
+}
+
+.title-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+.subtitle-text {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* Cards for parameters */
+.param-card {
+    background: linear-gradient(135deg, #262730 0%, #2D2E3A 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #3D3E4A;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.param-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 168, 232, 0.2);
+    border-color: #00A8E8;
+}
+
+.param-title {
+    color: #00A8E8;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #00A8E8;
+    padding-bottom: 0.5rem;
+}
+
+/* Sliders */
+.stSlider > div > div > div > div {
+    background: linear-gradient(90deg, #00A8E8 0%, #0077BE 100%);
+}
+
+.stSlider > div > div > div > div > div {
+    background: white !important;
+    border: 2px solid #00A8E8;
+}
+
+/* Buttons */
+.stButton > button {
+    background: linear-gradient(135deg, #00A8E8 0%, #0077BE 100%);
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 168, 232, 0.3);
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 168, 232, 0.4);
+    background: linear-gradient(135deg, #00B4F0 0%, #0088D1 100%);
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 2rem;
+    background: transparent;
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 3rem;
+    white-space: pre-wrap;
+    background: linear-gradient(135deg, #262730 0%, #2D2E3A 100%);
+    border-radius: 8px;
+    border: 1px solid #3D3E4A;
+    color: #FAFAFA;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background: linear-gradient(135deg, #3D3E4A 0%, #454658 100%);
+    border-color: #00A8E8;
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #00A8E8 0%, #0077BE 100%) !important;
+    border-color: #00A8E8 !important;
+    color: white !important;
+}
+
+/* Metrics */
+.metric-card {
+    background: linear-gradient(135deg, #262730 0%, #2D2E3A 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #3D3E4A;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: scale(1.05);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00A8E8;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: rgba(250, 250, 250, 0.7);
+    margin-top: 0.5rem;
+}
+
+/* Info boxes */
+.info-box {
+    background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+    border-left: 5px solid #00A8E8;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.warning-box {
+    background: linear-gradient(135deg, #92400E 0%, #B45309 100%);
+    border-left: 5px solid #FCD34D;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.success-box {
+    background: linear-gradient(135deg, #065F46 0%, #047857 100%);
+    border-left: 5px solid #10B981;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+/* Sidebar */
+.sidebar-content {
+    background: linear-gradient(135deg, #262730 0%, #2D2E3A 100%);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #3D3E4A;
+}
+
+/* Plots */
+.plot-container {
+    background: linear-gradient(135deg, #262730 0%, #2D2E3A 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #3D3E4A;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(250, 250, 250, 0.6);
+    font-size: 0.9rem;
+    border-top: 1px solid #3D3E4A;
+    margin-top: 3rem;
+}
+
+/* Expander */
+.streamlit-expanderHeader {
+    background: linear-gradient(135deg, #262730 0%, #2D2E3A 100%);
+    border-radius: 8px;
+    color: #00A8E8;
+    font-weight: 600;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1E1E2A;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #00A8E8 0%, #0077BE 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #00B4F0 0%, #0088D1 100%);
+}
