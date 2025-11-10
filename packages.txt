@@ -1,0 +1,4 @@
+# System packages for Streamlit Cloud
+gcc
+g++
+python3-dev

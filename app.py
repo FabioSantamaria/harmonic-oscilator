@@ -14,6 +14,10 @@ def apply_custom_css():
 # Initialize session state for animation
 if 'animation_running' not in st.session_state:
     st.session_state.animation_running = False
+if 'animation_frame' not in st.session_state:
+    st.session_state.animation_frame = 0
+if 'animation_speed' not in st.session_state:
+    st.session_state.animation_speed = 1.0
 
 # Apply CSS
 apply_custom_css()
@@ -86,9 +90,16 @@ with st.sidebar:
     st.markdown('<div class="metric-label">Damping Ratio</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Animation toggle
+    # Animation controls
+    st.markdown('<div class="param-card">', unsafe_allow_html=True)
+    st.markdown('<p class="param-title">Animation Controls</p>', unsafe_allow_html=True)
+    
     if st.button("▶️ Toggle Animation", help="Toggle real-time animation"):
         st.session_state.animation_running = not st.session_state.animation_running
+    
+    st.session_state.animation_speed = st.slider("Animation Speed", 0.1, 3.0, 1.0, 0.1, 
+                                                help="Speed multiplier for animation")
+    st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -192,6 +203,105 @@ with tab1:
     
     st.plotly_chart(fig3, width='stretch', config={"displayModeBar": True})
     st.markdown('</div>', unsafe_allow_html=True)
+
+# Animated Oscillator Visualization
+if st.session_state.animation_running:
+    st.markdown('<div class="plot-container">', unsafe_allow_html=True)
+    st.subheader("🎬 Real-time Oscillator Animation")
+    
+    # Animation parameters
+    animation_speed = st.session_state.animation_speed
+    frame_delay = 0.05  # seconds between frames
+    
+    # Create animation frame
+    col_anim1, col_anim2 = st.columns([1, 2])
+    
+    with col_anim1:
+        # Current state display
+        current_frame = st.session_state.animation_frame
+        if current_frame < len(t):
+            current_time = t[current_frame]
+            current_pos = x[current_frame]
+            current_vel = v[current_frame]
+            
+            st.metric("Time", f"{current_time:.2f} s")
+            st.metric("Position", f"{current_pos:.2f} m")
+            st.metric("Velocity", f"{current_vel:.2f} m/s")
+            st.metric("Frame", f"{current_frame + 1}/{len(t)}")
+    
+    with col_anim2:
+        # Create animated visualization
+        fig_anim = go.Figure()
+        
+        # Spring visualization (simplified as a line)
+        spring_length = 2.0 + current_pos if current_frame < len(t) else 2.0
+        
+        # Mass position
+        mass_pos = spring_length if current_frame < len(t) else 2.0
+        
+        # Draw spring (as a wavy line)
+        spring_x = np.linspace(0, spring_length, 20)
+        spring_y = 0.1 * np.sin(4 * np.pi * spring_x / spring_length)
+        
+        fig_anim.add_trace(go.Scatter(
+            x=spring_x, y=spring_y,
+            mode='lines', name='Spring',
+            line=dict(color='#00A8E8', width=3)
+        ))
+        
+        # Draw mass (as a rectangle)
+        mass_width = 0.3
+        mass_height = 0.2
+        mass_x = [mass_pos - mass_width/2, mass_pos + mass_width/2, mass_pos + mass_width/2, mass_pos - mass_width/2, mass_pos - mass_width/2]
+        mass_y = [-mass_height/2, -mass_height/2, mass_height/2, mass_height/2, -mass_height/2]
+        
+        fig_anim.add_trace(go.Scatter(
+            x=mass_x, y=mass_y,
+            mode='lines', fill='toself', name='Mass',
+            line=dict(color='#FF6B35', width=2),
+            fillcolor='rgba(255, 107, 53, 0.7)'
+        ))
+        
+        # Draw equilibrium position
+        fig_anim.add_vline(x=2.0, line_dash="dash", line_color="white", 
+                          annotation_text="Equilibrium")
+        
+        # Draw position indicator
+        if current_frame < len(t):
+            fig_anim.add_trace(go.Scatter(
+                x=[mass_pos], y=[mass_height/2 + 0.1],
+                mode='markers+text', text=[f"{current_pos:.2f}m"],
+                textposition="top center",
+                marker=dict(color='red', size=8),
+                showlegend=False
+            ))
+        
+        fig_anim.update_layout(
+            title="Mass-Spring-Damper System",
+            xaxis_title="Position (m)",
+            yaxis_title="",
+            template="plotly_dark",
+            height=300,
+            showlegend=False,
+            xaxis=dict(range=[0, 5]),
+            yaxis=dict(range=[-0.5, 0.5], visible=False)
+        )
+        
+        st.plotly_chart(fig_anim, width='stretch')
+        
+        # Progress bar
+        if current_frame < len(t):
+            progress = (current_frame + 1) / len(t)
+            st.progress(progress)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Update animation frame (cloud-friendly version)
+    if st.session_state.animation_running:
+        import time
+        time.sleep(0.1)  # Small delay to prevent excessive reruns
+        st.session_state.animation_frame = (current_frame + int(animation_speed * 2)) % len(t)
+        st.rerun()
 
 # Tab 2: Laplace Transform Analysis
 with tab2:
