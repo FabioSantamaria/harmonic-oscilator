@@ -64,7 +64,7 @@ with st.sidebar:
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Simulation Settings
-    st.markdown('<div class="param-card">', unsafe_mit_allow_html=True)
+    st.markdown('<div class="param-card">', unsafe_allow_html=True)
     st.markdown('<p class="param-title">Simulation Settings</p>', unsafe_allow_html=True)
     
     t_max = st.slider("Simulation Time (s)", 1.0, 50.0, 20.0, 1.0, help="Total simulation time")
@@ -136,7 +136,7 @@ with tab1:
         )
         fig1.update_xaxes(title_text="Time (s)", row=2, col=1)
         
-        st.plotly_chart(fig1, use_container_width=True, config={"displayModeBar": True})
+        st.plotly_chart(fig1, width='stretch', config={"displayModeBar": True})
         st.markdown('</div>', unsafe_allow_html=True)
     
     with col2:
@@ -165,7 +165,7 @@ with tab1:
             margin=dict(t=50, b=50, l=50, r=50)
         )
         
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
         st.markdown('</div>', unsafe_allow_html=True)
     
     # Energy Analysis
@@ -190,7 +190,7 @@ with tab1:
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
     )
     
-    st.plotly_chart(fig3, use_container_width=True, config={"displayModeBar": True})
+    st.plotly_chart(fig3, width='stretch', config={"displayModeBar": True})
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Tab 2: Laplace Transform Analysis
@@ -236,7 +236,7 @@ with tab2:
         )
         fig4.update_xaxes(title_text="Frequency (rad/s)", type="log", row=2, col=1)
         
-        st.plotly_chart(fig4, use_container_width=True, config={"displayModeBar": True})
+        st.plotly_chart(fig4, width='stretch', config={"displayModeBar": True})
     
     with col4:
         st.subheader("🎯 Pole-Zero Map")
@@ -271,7 +271,7 @@ with tab2:
             yaxis=dict(range=[-3, 3])
         )
         
-        st.plotly_chart(fig5, use_container_width=True)
+        st.plotly_chart(fig5, width='stretch')
     
     st.markdown('</div>', unsafe_allow_html=True)
     
