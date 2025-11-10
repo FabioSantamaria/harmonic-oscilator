@@ -27,16 +27,15 @@
 
 The app includes the following configuration files:
 
-- **`requirements.txt`**: Python dependencies
-- **`packages.txt`**: System dependencies (for Streamlit Cloud)
-- **`.streamlit/config.toml`**: Streamlit configuration
+- **`requirements.txt`**: Python dependencies (simplified for compatibility)
+- **No custom Streamlit config**: Using default Streamlit Cloud settings for maximum compatibility
 
 ### Troubleshooting
 
 #### Port Permission Error
 If you encounter "Permission denied" errors, ensure:
 - No hardcoded port numbers in the code
-- The `.streamlit/config.toml` file doesn't specify a restricted port
+- No custom Streamlit configuration that specifies ports
 - Streamlit Cloud will automatically assign the correct port
 
 #### Animation Performance
@@ -47,12 +46,11 @@ The animation is optimized for cloud deployment with:
 
 #### Dependencies
 All required packages are listed in `requirements.txt`:
-- streamlit==1.51.0
-- numpy==2.3.4
-- scipy==1.16.3
-- plotly==6.4.0
-- matplotlib==3.10.7
-- streamlit-extras==0.7.8
+- streamlit (latest compatible version)
+- numpy (latest compatible version)
+- scipy (latest compatible version)
+- plotly (latest compatible version)
+- matplotlib (latest compatible version)
 
 ### Features
 - Real-time harmonic oscillator simulation
